@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from djgeojson.fields import PointField
 
 
@@ -17,7 +18,10 @@ class Location(models.Model):
 
     @property
     def popupContent(self):
-        url = "#"
+        url = reverse(
+            "locations:location_detail",
+            kwargs={"pk": self.id},
+        )
         title_str = '<a class="link link-primary" href="#" '
         title_str += (
             "onclick=\"openDrawing('%(url)s')\"><strong>%(title)s</strong></a>"

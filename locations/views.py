@@ -1,7 +1,8 @@
 import json
+from typing import Any
 
 from django.http import Http404
-from django.views.generic import ListView
+from django.views.generic import DetailView, ListView
 
 from .models import Location
 
@@ -31,6 +32,23 @@ class BaseListView(HxTemplateMixin, ListView):
 
     def dispatch(self, request, *args, **kwargs):
         response = super().dispatch(request, *args, **kwargs)
+        if request.htmx:
+            dict = {"refreshCollections": True}
+            response["HX-Trigger-After-Swap"] = json.dumps(dict)
+        return response
+
+
+class LocationDetailView(HxTemplateMixin, DetailView):
+    model = Location
+    template_name = "locations/htmx/location_detail.html"
+
+    def get_context_data(self, **kwargs) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context["markers"] = self.object
+        return context
+
+    def dispatch(self, request, *args, **kwargs):
+        response = super(LocationDetailView, self).dispatch(request, *args, **kwargs)
         if request.htmx:
             dict = {"refreshCollections": True}
             response["HX-Trigger-After-Swap"] = json.dumps(dict)

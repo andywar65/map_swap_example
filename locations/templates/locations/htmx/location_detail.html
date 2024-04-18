@@ -1,0 +1,21 @@
+{% load i18n %}
+{% load geojson_tags %}
+
+<div class="card-header">
+  <h4 class="card-title">{% trans "Location"%}: {{ object.title }}</h4>
+</div>
+<div class="card-body"
+     id="nav-card-body">
+  <p class="card-text">{{ object.description }}</p>
+  <ul>
+    <li>
+      <a class="link link-primary"
+         hx-get="{% url 'locations:base_list' %}"
+         hx-target="#nav-card"
+         hx-push-url="true">
+        {% trans "Back to list" %}
+      </a>
+    </li>
+  </ul>
+</div>
+<script id="marker_data" type="application/json">{{ markers|geojsonfeature:"popupContent"|safe }}</script>
