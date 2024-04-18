@@ -1,0 +1,19 @@
+{% load i18n %}
+{% load geojson_tags %}
+
+<div class="card-header">
+  <h4 class="card-title">{% trans "Locations" %}</h4>
+</div>
+<div class="card-body">
+  {% if markers %}
+    <p class="card-text">
+      {% blocktrans %}
+        Click on the markers and follow the link
+        to see the locations in detail.
+      {% endblocktrans %}
+    </p>
+  {% else %}
+    <p>{% trans "No locations yet" %}</p>
+  {% endif %}
+</div>
+<script id="marker_data" type="application/json">{{ markers|geojsonfeature:"popupContent"|safe }}</script>
