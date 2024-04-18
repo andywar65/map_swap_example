@@ -1,8 +1,8 @@
-from django.urls import path  # noqa
+from django.urls import path
 
-from .views import *  # noqa
+from .views import BaseListView
 
 app_name = "locations"
 urlpatterns = [
-    # path("", BaseListView.as_view(), name="base_list"),
+    path("all/", BaseListView.as_view(), name="base_list"),
 ]
