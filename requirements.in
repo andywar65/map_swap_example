@@ -1,4 +1,6 @@
 django>=5.0,<6.0
+psycopg[binary,pool]
+environs[django]
 django-htmx
 factory_boy
 django-geojson
