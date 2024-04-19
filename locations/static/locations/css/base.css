@@ -3,9 +3,9 @@
   ------------------------------------*/
 
   .link {
-      cursor: pointer;
-  }
+    cursor: pointer;
+}
 
-  a.link:hover, a.link:focus {
-      cursor: pointer;
-  }
+a.link:hover, a.link:focus {
+    cursor: pointer;
+}
