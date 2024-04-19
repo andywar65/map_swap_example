@@ -11,24 +11,18 @@ function map_init(map, options) {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         maxZoom: 19,
       });
-
-    const layer_control = L.control.layers(null).addTo(map);
+    base_map.addTo(map);
+    const layerGroup = L.layerGroup().addTo(map);
 
     function getCollections() {
-      // add eventually inactive base layers so they can be removed
-      base_map.addTo(map);
-      // remove all layers from layer control and from map
-      map.eachLayer(function (layer) {
-        layer_control.removeLayer(layer);
-        map.removeLayer(layer);
-      });
-      // add base layers back to map and layer control
-      base_map.addTo(map);
+      // remove all objects
+      layerGroup.clearLayers();
       // add objects to layers
       collection = JSON.parse(document.getElementById("marker_data").textContent);
       for (marker of collection.features) {
-        L.geoJson(marker, {onEachFeature: onEachFeature}).addTo(map);
+        L.geoJson(marker, {onEachFeature: onEachFeature}).addTo(layerGroup);
       }
+      // fit bounds
       map.fitBounds(L.geoJson(collection).getBounds(), {padding: [30,30]});
     }
 
