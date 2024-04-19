@@ -1,0 +1,11 @@
+/*------------------------------------
+  - fix HTMX
+  ------------------------------------*/
+
+  .link {
+      cursor: pointer;
+  }
+
+  a.link:hover, a.link:focus {
+      cursor: pointer;
+  }
