@@ -9,7 +9,7 @@ function map_init(map, options) {
     const base_map = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       {
         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        maxZoom: 19,
+        maxZoom: 10,
       });
 
     const layer_control = L.control.layers(null).addTo(map);
