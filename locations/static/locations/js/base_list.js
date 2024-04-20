@@ -34,5 +34,5 @@ function map_init(map, options) {
   }
 
   function openLocation(path) {
-    htmx.ajax('GET', path, '#nav-card')
+    htmx.ajax('GET', path, '#dialog-box')
   }

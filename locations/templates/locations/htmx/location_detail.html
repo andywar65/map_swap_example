@@ -5,13 +5,13 @@
   <h4 class="card-title">{% trans "Location"%}: {{ object.title }}</h4>
 </div>
 <div class="card-body"
-     id="nav-card-body">
+     id="dialog-box-body">
   <p class="card-text">{{ object.description }}</p>
   <ul>
     <li>
       <a class="link link-primary"
          hx-get="{% url 'locations:base_list' %}"
-         hx-target="#nav-card"
+         hx-target="#dialog-box"
          hx-push-url="true">
         {% trans "Back to list" %}
       </a>

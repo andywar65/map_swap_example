@@ -16,10 +16,10 @@
 {% block content %}
   <div class="row">
     <div class="col" style="margin-bottom: 20px">
-      <div class="card" id="nav-card">
-        {% block nav-card %}
+      <div class="card" id="dialog-box">
+        {% block dialog-box %}
           {% include "locations/htmx/base_list.html" %}
-        {% endblock nav-card %}
+        {% endblock dialog-box %}
       </div>
     </div>
     <script src="{% static 'locations/js/base_list.js'%}"></script>
