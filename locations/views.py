@@ -1,5 +1,4 @@
 import json
-from typing import Any
 
 from django.views.generic import DetailView, ListView
 
@@ -31,8 +30,3 @@ class BaseListView(HtmxMixin, ListView):
 class LocationDetailView(HtmxMixin, DetailView):
     model = Location
     template_name = "locations/htmx/location_detail.html"
-
-    def get_context_data(self, **kwargs) -> dict[str, Any]:
-        context = super().get_context_data(**kwargs)
-        context["markers"] = self.object
-        return context
