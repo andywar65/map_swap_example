@@ -22,7 +22,7 @@ class BaseListView(HtmxMixin, ListView):
     def dispatch(self, request, *args, **kwargs):
         response = super().dispatch(request, *args, **kwargs)
         if request.htmx:
-            dict = {"refreshCollections": True}
+            dict = {"refreshData": True}
             response["HX-Trigger-After-Swap"] = json.dumps(dict)
         return response
 
@@ -34,7 +34,7 @@ class LocationDetailView(HtmxMixin, DetailView):
     def dispatch(self, request, *args, **kwargs):
         response = super().dispatch(request, *args, **kwargs)
         if request.htmx:
-            dict = {"refreshCollections": True}
+            dict = {"refreshData": True}
             response["HX-Trigger-After-Swap"] = json.dumps(dict)
             response["HX-Push-Url"] = self.object.get_absolute_url()
         return response

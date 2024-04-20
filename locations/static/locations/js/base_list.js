@@ -28,7 +28,7 @@ function map_init(map, options) {
 
     getCollections()
 
-    addEventListener("refreshCollections", function(evt){
+    addEventListener("refreshData", function(evt){
       getCollections();
     })
   }
