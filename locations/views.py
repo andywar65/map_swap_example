@@ -13,6 +13,12 @@ class HtmxMixin:
             return [self.template_name.replace("htmx/", "")]
         return [self.template_name]
 
+
+class BaseListView(HtmxMixin, ListView):
+    model = Location
+    context_object_name = "markers"
+    template_name = "locations/htmx/base_list.html"
+
     def dispatch(self, request, *args, **kwargs):
         response = super().dispatch(request, *args, **kwargs)
         if request.htmx:
@@ -21,12 +27,14 @@ class HtmxMixin:
         return response
 
 
-class BaseListView(HtmxMixin, ListView):
-    model = Location
-    context_object_name = "markers"
-    template_name = "locations/htmx/base_list.html"
-
-
 class LocationDetailView(HtmxMixin, DetailView):
     model = Location
     template_name = "locations/htmx/location_detail.html"
+
+    def dispatch(self, request, *args, **kwargs):
+        response = super().dispatch(request, *args, **kwargs)
+        if request.htmx:
+            dict = {"refreshCollections": True}
+            response["HX-Trigger-After-Swap"] = json.dumps(dict)
+            response["HX-Push-Url"] = self.object.get_absolute_url()
+        return response

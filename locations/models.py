@@ -16,12 +16,12 @@ class Location(models.Model):
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return reverse("locations:location_detail", kwargs={"pk": self.id})
+
     @property
     def popupContent(self):
-        url = reverse(
-            "locations:location_detail",
-            kwargs={"pk": self.id},
-        )
+        url = self.get_absolute_url()
         title_str = '<a class="link link-primary" href="#" '
         title_str += (
             "onclick=\"openLocation('%(url)s')\"><strong>%(title)s</strong></a>"
