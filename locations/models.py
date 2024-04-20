@@ -24,7 +24,7 @@ class Location(models.Model):
         )
         title_str = '<a class="link link-primary" href="#" '
         title_str += (
-            "onclick=\"openDrawing('%(url)s')\"><strong>%(title)s</strong></a>"
+            "onclick=\"openLocation('%(url)s')\"><strong>%(title)s</strong></a>"
             % {
                 "title": self.title,
                 "url": url,

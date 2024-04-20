@@ -33,6 +33,6 @@ function map_init(map, options) {
     })
   }
 
-  function openDrawing(path) {
+  function openLocation(path) {
     htmx.ajax('GET', path, '#nav-card')
   }
