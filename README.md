@@ -7,4 +7,4 @@ Prepare a virtual environment, clone this repository (`git clone https://github.
 ## Usage
 If all went well, you should see a diakog box in the left/top section of the screen (depends on device) and a world map with the locations previously generated. Click on a marker, the location name will pop up. Click on the link and the map will focus on the surroundings of chosen location. if you want to go back to world map, there is a link in the dialog box. Swapping the maps requires the transfert of minimal `HTML` fragments, without reloading the whole page.
 ## How it works
-To be continued.
+The project has only one model: `Location`. The model has two text fields, `title` and `description`, and a `PointField` that stores geographic coordinates in `JSON` format. The only significant method of the model is `popupContent(location)` that returns an `HTML` string that pops up when the location marker is clicked on the map. The string looks something like this: `<a onclick="openLocation({ location.path })">{ location.title }</a>`
