@@ -1,0 +1,25 @@
+{
+    "type": "FeatureCollection",
+    "features":
+    [
+        {
+            "type": "Feature",
+            "properties": {
+                "popupContent": {
+                    "content": "<a class=\"link link-primary\" href=\"#\" onclick=\"openLocation('/location/38/')\"><strong>Arba Minch</strong></a>"
+                    },
+                "model": "locations.location"
+            },
+            "id": 33,
+            "geometry": {
+                "type": "Point",
+                "coordinates": [37.55, 6.03333]
+            },
+
+        }
+    ],
+    "crs": {
+        "type": "link",
+        "properties": {"href": "http://spatialreference.org/ref/epsg/4326/", "type": "proj4"}
+    }
+}
