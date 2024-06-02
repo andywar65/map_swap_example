@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # third party
     "django_htmx",
+    "djgeojson",
     # local
     "locations.apps.LocationsConfig",
 ]
