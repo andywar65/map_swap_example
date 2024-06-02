@@ -16,9 +16,12 @@ django==5.0.6
     # via
     #   -r requirements.in
     #   dj-database-url
+    #   django-geojson
     #   django-htmx
 django-cache-url==3.4.5
     # via environs
+django-geojson @ git+https://github.com/andywar65/django-geojson@oserror
+    # via -r requirements.in
 django-htmx==1.17.3
     # via -r requirements.in
 environs[django]==11.0.0

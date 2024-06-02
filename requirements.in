@@ -3,3 +3,4 @@ psycopg[binary,pool]
 environs[django]
 django-htmx
 faker
+django-geojson @ git+https://github.com/andywar65/django-geojson@oserror
