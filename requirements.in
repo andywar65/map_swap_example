@@ -3,5 +3,3 @@ psycopg[binary,pool]
 environs[django]
 django-htmx
 faker
-django-geojson
-jsonfield

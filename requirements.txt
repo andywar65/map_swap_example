@@ -16,20 +16,14 @@ django==5.0.6
     # via
     #   -r requirements.in
     #   dj-database-url
-    #   django-geojson
     #   django-htmx
-    #   jsonfield
 django-cache-url==3.4.5
     # via environs
-django-geojson==4.1.0
-    # via -r requirements.in
 django-htmx==1.17.3
     # via -r requirements.in
 environs[django]==11.0.0
     # via -r requirements.in
 faker==25.3.0
-    # via -r requirements.in
-jsonfield==3.1.0
     # via -r requirements.in
 marshmallow==3.21.2
     # via environs
