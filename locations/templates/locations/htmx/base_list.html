@@ -1,4 +1,5 @@
 {% load i18n %}
+{% load geojson_tags %}
 
 <div class="card-header">
   <h4 class="card-title">{% trans "Locations" %}</h4>
@@ -15,4 +16,4 @@
     <p>{% trans "No locations yet" %}</p>
   {% endif %}
 </div>
-<script id="marker_data" type="application/json">{{ markers }}</script>
+<script id="marker_data" type="application/json">{{ markers|geojsonfeature:"popupContent"|safe }}</script>
