@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     # third party
     "django_htmx",
     "djgeojson",
-    "leaflet",
     # local
     "locations.apps.LocationsConfig",
 ]

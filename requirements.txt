@@ -18,15 +18,12 @@ django==5.0.6
     #   dj-database-url
     #   django-geojson
     #   django-htmx
-    #   django-leaflet
     #   jsonfield
 django-cache-url==3.4.5
     # via environs
 django-geojson==4.1.0
     # via -r requirements.in
 django-htmx==1.17.3
-    # via -r requirements.in
-django-leaflet==0.30.0
     # via -r requirements.in
 environs[django]==11.0.0
     # via -r requirements.in
