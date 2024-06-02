@@ -1,6 +1,5 @@
 {% extends "locations/base.html" %}
 {% load static %}
-{% load leaflet_tags %}
 
 {% block extra-head %}
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -9,12 +8,6 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
           integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
           crossorigin=""></script>
-  <style>
-    .leaflet-container {  /* all maps */
-      height: 600px;
-      margin-bottom: 20px;
-    }
-  </style>
 {% endblock extra-head %}
 
 {% block content %}
@@ -26,9 +19,9 @@
         {% endblock dialog-box %}
       </div>
     </div>
-    <script src="{% static 'locations/js/base_list.js'%}"></script>
     <div class="col col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
-      {% leaflet_map "mymap" callback="window.map_init" %}
+      <div id="swap_map" style="height: 600px; margin-bottom: 20px"></div>
+      <script src="{% static 'locations/js/base_list.js'%}"></script>
     </div>
   </div>
 {% endblock content %}
