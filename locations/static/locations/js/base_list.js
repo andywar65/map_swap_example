@@ -23,7 +23,9 @@ function getCollections() {
     L.geoJson(marker, {onEachFeature: onEachFeature}).addTo(layerGroup);
   }
   // fit bounds
-  map.fitBounds(L.geoJson(collection).getBounds(), {padding: [30,30]});
+  if (collection !== null) {
+    map.fitBounds(L.geoJson(collection).getBounds(), {padding: [30,30]});
+  }
 }
 
 getCollections()
