@@ -8,6 +8,8 @@ asgiref==3.8.1
     # via
     #   django
     #   django-htmx
+crispy-bootstrap5==2024.2
+    # via -r requirements.in
 dj-database-url==2.2.0
     # via environs
 dj-email-url==1.0.6
@@ -15,11 +17,17 @@ dj-email-url==1.0.6
 django==5.0.6
     # via
     #   -r requirements.in
+    #   crispy-bootstrap5
     #   dj-database-url
+    #   django-crispy-forms
     #   django-geojson
     #   django-htmx
 django-cache-url==3.4.5
     # via environs
+django-crispy-forms==2.1
+    # via
+    #   -r requirements.in
+    #   crispy-bootstrap5
 django-geojson @ git+https://github.com/andywar65/django-geojson@oserror
     # via -r requirements.in
 django-htmx==1.17.3
