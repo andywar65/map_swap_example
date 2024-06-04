@@ -8,6 +8,18 @@ class Location(models.Model):
     title = models.CharField(max_length=50)
     description = models.TextField(max_length=500)
     geom = PointField("LatLong")
+    lat = models.DecimalField(
+        "Latitude",
+        null=True,
+        max_digits=9,
+        decimal_places=6,
+    )
+    long = models.DecimalField(
+        "Longitude",
+        null=True,
+        max_digits=9,
+        decimal_places=6,
+    )
 
     class Meta:
         verbose_name = "Location"
