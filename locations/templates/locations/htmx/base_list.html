@@ -15,5 +15,13 @@
   {% else %}
     <p>{% trans "No locations yet" %}</p>
   {% endif %}
+  {% if user.is_authenticated %}
+    <a class="btn btn-success"
+       hx-get="{% url 'locations:location_create' %}"
+       hx-target="#dialog-box"
+       hx-push-url="true">
+      {% trans "Add location" %}
+    </a>
+  {% endif %}
 </div>
 <script id="marker_data" type="application/json">{{ markers|geojsonfeature:"popupContent"|safe }}</script>
