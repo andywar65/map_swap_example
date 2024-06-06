@@ -1,0 +1,20 @@
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% load geojson_tags %}
+
+<div class="card-header">
+  <h4 class="card-title">{% trans "Create location"%}</h4>
+</div>
+<div class="card-body"
+     id="dialog-box-body">
+  <form>
+    {{ form|crispy }}
+    <button class="btn btn-primary"
+            type="submit"
+            hx-post="{% url 'locations:location_create' %}"
+            hx-target="#dialog-box">
+      {% trans "Add location" %}
+    </button>
+  </form>
+</div>
+<script id="marker_data" type="application/json">{{ markers|geojsonfeature:"popupContent"|safe }}</script>

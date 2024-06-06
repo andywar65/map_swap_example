@@ -3,6 +3,6 @@ psycopg[binary,pool]
 environs[django]
 django-htmx
 faker
-django-geojson
-jsonfield
-django-leaflet
+django-geojson @ git+https://github.com/andywar65/django-geojson@oserror
+django-crispy-forms
+crispy-bootstrap5
