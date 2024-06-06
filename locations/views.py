@@ -1,6 +1,6 @@
 import json
 
-from django.contrib.auth.mixins import LoginRequiredMixin  # noqa
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from django.views.generic import CreateView, DetailView, ListView
 
@@ -30,7 +30,7 @@ class BaseListView(HtmxMixin, ListView):
         return response
 
 
-class LocationCreateView(HtmxMixin, CreateView):
+class LocationCreateView(LoginRequiredMixin, HtmxMixin, CreateView):
     model = Location
     template_name = "locations/htmx/location_create.html"
     form_class = LocationCreateForm
