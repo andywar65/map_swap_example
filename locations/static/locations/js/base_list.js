@@ -23,8 +23,10 @@ function getCollections() {
     L.geoJson(marker, {onEachFeature: onEachFeature}).addTo(layerGroup);
   }
   // fit bounds
-  if (collection !== null) {
+  if (collection.features.length !== 0) {
     map.fitBounds(L.geoJson(collection).getBounds(), {padding: [30,30]});
+  } else {
+    map.setView([0,0], 2)
   }
 }
 
