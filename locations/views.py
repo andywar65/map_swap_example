@@ -83,6 +83,12 @@ class LocationUpdateView(LoginRequiredMixin, HtmxMixin, UpdateView):
     template_name = "locations/htmx/location_update.html"
     form_class = LocationCreateForm
 
+    def get_initial(self):
+        initial = super().get_initial()
+        initial["lat"] = self.object.geom["coordinates"][1]
+        initial["long"] = self.object.geom["coordinates"][0]
+        return initial
+
     def form_valid(self, form):
         form.instance.geom = {
             "type": "Point",
