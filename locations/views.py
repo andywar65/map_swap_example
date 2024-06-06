@@ -2,7 +2,7 @@ import json
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
-from django.views.generic import CreateView, DetailView, ListView
+from django.views.generic import CreateView, DetailView, ListView, UpdateView
 
 from .forms import LocationCreateForm
 from .models import Location
@@ -71,4 +71,30 @@ class LocationDetailView(HtmxMixin, DetailView):
             dict = {"refreshData": True}
             response["HX-Trigger-After-Swap"] = json.dumps(dict)
             response["HX-Push-Url"] = self.object.get_absolute_url()
+        return response
+
+
+class LocationUpdateView(LoginRequiredMixin, HtmxMixin, UpdateView):
+    model = Location
+    template_name = "locations/htmx/location_update.html"
+    form_class = LocationCreateForm
+
+    def form_valid(self, form):
+        form.instance.geom = {
+            "type": "Point",
+            "coordinates": [
+                float(form.cleaned_data["long"]),
+                float(form.cleaned_data["lat"]),
+            ],
+        }
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse("locations:location_detail", kwargs={"pk": self.object.id})
+
+    def dispatch(self, request, *args, **kwargs):
+        response = super().dispatch(request, *args, **kwargs)
+        if request.htmx:
+            dict = {"refreshData": True}
+            response["HX-Trigger-After-Swap"] = json.dumps(dict)
         return response

@@ -8,6 +8,16 @@
      id="dialog-box-body">
   <p class="card-text">{{ object.description }}</p>
   <ul>
+    {% if user.is_authenticated %}
+      <li>
+        <a class="link link-primary"
+           hx-get="{% url 'locations:location_update' pk=object.id %}"
+           hx-target="#dialog-box"
+           hx-push-url="true">
+          {% trans "Update location" %}
+        </a>
+      </li>
+    {% endif %}
     <li>
       <a class="link link-primary"
          hx-get="{% url 'locations:base_list' %}"
