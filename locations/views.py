@@ -1,6 +1,10 @@
 import json
 
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import Http404
+from django.shortcuts import get_object_or_404
+from django.template.response import TemplateResponse
 from django.urls import reverse
 from django.views.generic import CreateView, DetailView, ListView, UpdateView
 
@@ -98,3 +102,16 @@ class LocationUpdateView(LoginRequiredMixin, HtmxMixin, UpdateView):
             dict = {"refreshData": True}
             response["HX-Trigger-After-Swap"] = json.dumps(dict)
         return response
+
+
+@login_required
+def location_delete_view(request, pk):
+    if not request.htmx:
+        raise Http404("Request without HTMX headers")
+    location = get_object_or_404(Location, id=pk)
+    location.delete()
+    return TemplateResponse(
+        request,
+        "locations/htmx/location_delete.html",
+        {},
+    )

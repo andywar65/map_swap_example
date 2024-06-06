@@ -17,6 +17,14 @@
           {% trans "Update location" %}
         </a>
       </li>
+      <li>
+        <a class="link link-danger"
+           hx-get="{% url 'locations:location_delete' pk=object.id %}"
+           hx-target="#dialog-box"
+           hx-confirm="{% trans 'Are you sure you want to delete this location?' %}">
+          {% trans "Delete location" %}
+        </a>
+      </li>
     {% endif %}
     <li>
       <a class="link link-primary"
