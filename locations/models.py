@@ -11,14 +11,14 @@ class Location(models.Model):
     lat = models.DecimalField(
         "Latitude",
         null=True,
-        max_digits=9,
-        decimal_places=6,
+        max_digits=18,
+        decimal_places=15,
     )
     long = models.DecimalField(
         "Longitude",
         null=True,
-        max_digits=9,
-        decimal_places=6,
+        max_digits=18,
+        decimal_places=15,
     )
 
     class Meta:

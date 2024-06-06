@@ -39,3 +39,12 @@ addEventListener("refreshData", function(evt){
 function openLocation(path) {
   htmx.ajax('GET', path, '#dialog-box')
 }
+
+function onMapClick(e) {
+  var inputlat = document.getElementById("id_lat");
+  var inputlong = document.getElementById("id_long");
+  inputlat.setAttribute('value', e.latlng.lat);
+  inputlong.setAttribute('value', e.latlng.lng);
+}
+
+map.on('click', onMapClick);
