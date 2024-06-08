@@ -44,16 +44,6 @@ class LocationCreateView(LoginRequiredMixin, HtmxMixin, CreateView):
         context["markers"] = Location.objects.none()
         return context
 
-    def form_valid(self, form):
-        form.instance.geom = {
-            "type": "Point",
-            "coordinates": [
-                float(form.cleaned_data["long"]),
-                float(form.cleaned_data["lat"]),
-            ],
-        }
-        return super().form_valid(form)
-
     def get_success_url(self):
         return reverse("locations:location_detail", kwargs={"pk": self.object.id})
 
@@ -84,20 +74,11 @@ class LocationUpdateView(LoginRequiredMixin, HtmxMixin, UpdateView):
     form_class = LocationCreateForm
 
     def get_initial(self):
+        # if lat or long are not given
         initial = super().get_initial()
         initial["lat"] = self.object.geom["coordinates"][1]
         initial["long"] = self.object.geom["coordinates"][0]
         return initial
-
-    def form_valid(self, form):
-        form.instance.geom = {
-            "type": "Point",
-            "coordinates": [
-                float(form.cleaned_data["long"]),
-                float(form.cleaned_data["lat"]),
-            ],
-        }
-        return super().form_valid(form)
 
     def get_success_url(self):
         return reverse("locations:location_detail", kwargs={"pk": self.object.id})

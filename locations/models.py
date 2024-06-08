@@ -7,7 +7,7 @@ class Location(models.Model):
 
     title = models.CharField(max_length=50)
     description = models.TextField(max_length=500)
-    geom = PointField("LatLong")
+    geom = PointField("LatLong", null=True)
     lat = models.DecimalField(
         "Latitude",
         null=True,
@@ -24,6 +24,25 @@ class Location(models.Model):
     class Meta:
         verbose_name = "Location"
         verbose_name_plural = "Locations"
+
+    __o_lat = None
+    __o_long = None
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.__o_lat = self.lat
+        self.__o_long = self.long
+
+    def save(self, *args, **kwargs):
+        if self.lat != self.__o_lat or self.long != self.__o_long:
+            self.geom = {
+                "type": "Point",
+                "coordinates": [
+                    float(self.long),
+                    float(self.lat),
+                ],
+            }
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title

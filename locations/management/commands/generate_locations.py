@@ -28,5 +28,7 @@ def create_items():
         Location.objects.create(
             title=loc[2],
             description=fake.sentence(),
-            geom={"type": "Point", "coordinates": [float(loc[1]), float(loc[0])]},
+            lat=loc[0],
+            long=loc[1],
+            # geom={"type": "Point", "coordinates": [float(loc[1]), float(loc[0])]},
         )
