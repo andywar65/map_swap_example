@@ -147,3 +147,7 @@ class LocationViewTest(TestCase):
         last = Location.objects.last()
         self.assertNotEqual(last.title, "Here")
         print("\n--Test correct location deletion")
+
+    def test_model_str_method(self):
+        first = Location.objects.first()
+        self.assertEqual(first.__str__(), first.title)

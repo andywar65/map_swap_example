@@ -74,7 +74,7 @@ class LocationUpdateView(LoginRequiredMixin, HtmxMixin, UpdateView):
     form_class = LocationCreateForm
 
     def get_initial(self):
-        # if lat or long are not given
+        # if geom has been changed somewhere else
         initial = super().get_initial()
         initial["lat"] = self.object.geom["coordinates"][1]
         initial["long"] = self.object.geom["coordinates"][0]
