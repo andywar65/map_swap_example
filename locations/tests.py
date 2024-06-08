@@ -5,6 +5,7 @@ from django.urls import reverse
 from faker import Faker
 from faker.providers import geo
 
+from .forms import LocationCreateForm
 from .models import Location
 
 pword = settings.DJANGO_SUPERUSER_PASSWORD
@@ -127,7 +128,7 @@ class LocationViewTest(TestCase):
             reverse("locations:location_update", kwargs={"pk": last.id}),
             {
                 "title": "Here",
-                "description": "This is where where",
+                "description": "This is where we were",
                 "lat": 42.1,
                 "long": 12.0,
             },
@@ -151,3 +152,16 @@ class LocationViewTest(TestCase):
     def test_model_str_method(self):
         first = Location.objects.first()
         self.assertEqual(first.__str__(), first.title)
+
+    def test_validation_error(self):
+        print("\n-Test form validation")
+        form = LocationCreateForm(
+            data={
+                "title": "Here",
+                "description": "This is where we were",
+                "lat": 142.1,
+                "long": 12.0,
+            }
+        )
+        self.assertFalse(form.is_valid())
+        print("\n--Test invalid latitude entry")

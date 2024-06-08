@@ -28,5 +28,5 @@ class LocationCreateForm(ModelForm):
         lat = cleaned_data["lat"]
         long = cleaned_data["long"]
         if lat > 90 or lat < -90 or long > 180 or long < -180:
-            raise ValidationError("Invalid latlong entry")
+            raise ValidationError("Invalid latlong entry", code="invalid_latlong")
         return cleaned_data
