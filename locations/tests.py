@@ -99,3 +99,51 @@ class LocationViewTest(TestCase):
         )
         self.assertEqual(response.status_code, 200)
         print("\n--Test with htmx location delete status 200")
+
+    def test_CRUD_cycle(self):
+        print("\n-Test CRUD cycle")
+        self.client.login(username="user", password=pword)
+        response = self.client.post(
+            reverse("locations:location_create"),
+            {
+                "title": "Here",
+                "description": "This is where we are",
+                "lat": 42.0,
+                "long": 12.0,
+            },
+            follow=True,
+        )
+        last = Location.objects.last()
+        self.assertRedirects(
+            response,
+            reverse("locations:location_detail", kwargs={"pk": last.id}),
+            status_code=302,
+            target_status_code=200,
+        )
+        print("\n--Test create location redirect")
+        self.assertEqual(last.title, "Here")
+        print("\n--Test correct location creation")
+        response = self.client.post(
+            reverse("locations:location_update", kwargs={"pk": last.id}),
+            {
+                "title": "Here",
+                "description": "This is where where",
+                "lat": 42.1,
+                "long": 12.0,
+            },
+            follow=True,
+        )
+        self.assertRedirects(
+            response,
+            reverse("locations:location_detail", kwargs={"pk": last.id}),
+            status_code=302,
+            target_status_code=200,
+        )
+        print("\n--Test update location redirect")
+        response = self.client.get(
+            reverse("locations:location_delete", kwargs={"pk": last.id}),
+            headers={"HX-Request": "true"},
+        )
+        last = Location.objects.last()
+        self.assertNotEqual(last.title, "Here")
+        print("\n--Test correct location deletion")
