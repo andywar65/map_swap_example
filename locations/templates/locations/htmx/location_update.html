@@ -7,6 +7,9 @@
 </div>
 <div class="card-body"
      id="dialog-box-body">
+  <p class="card-text">
+    {% trans "Click on the map to enter coordinates, or enter them manually." %}
+  </p>
   <form>
     {{ form|crispy }}
     <button class="btn btn-primary"

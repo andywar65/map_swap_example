@@ -8,6 +8,8 @@ asgiref==3.8.1
     # via
     #   django
     #   django-htmx
+coverage==7.5.3
+    # via -r requirements.in
 crispy-bootstrap5==2024.2
     # via -r requirements.in
 dj-database-url==2.2.0
