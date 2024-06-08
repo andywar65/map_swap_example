@@ -7,19 +7,9 @@ class Location(models.Model):
 
     title = models.CharField(max_length=50)
     description = models.TextField(max_length=500)
-    geom = PointField("LatLong", null=True)
-    lat = models.DecimalField(
-        "Latitude",
-        null=True,
-        max_digits=18,
-        decimal_places=15,
-    )
-    long = models.DecimalField(
-        "Longitude",
-        null=True,
-        max_digits=18,
-        decimal_places=15,
-    )
+    geom = PointField(null=True)
+    lat = models.FloatField("Latitude")
+    long = models.FloatField("Longitude")
 
     class Meta:
         verbose_name = "Location"
@@ -38,8 +28,8 @@ class Location(models.Model):
             self.geom = {
                 "type": "Point",
                 "coordinates": [
-                    float(self.long),
-                    float(self.lat),
+                    self.long,
+                    self.lat,
                 ],
             }
         super().save(*args, **kwargs)

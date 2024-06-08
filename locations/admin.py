@@ -6,4 +6,4 @@ from .models import Location
 @admin.register(Location)
 class LocationAdmin(admin.ModelAdmin):
     list_display = ("title",)
-    fields = ("title", "description", "geom")
+    fields = ("title", "description", "lat", "long")
