@@ -45,6 +45,8 @@ function onMapClick(e) {
   var inputlong = document.getElementById("id_long");
   inputlat.setAttribute('value', e.latlng.lat);
   inputlong.setAttribute('value', e.latlng.lng);
+  layerGroup.clearLayers();
+  L.marker([e.latlng.lat, e.latlng.lng]).addTo(layerGroup)
 }
 
 map.on('click', onMapClick);
