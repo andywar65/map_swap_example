@@ -42,6 +42,7 @@ class LocationCreateView(LoginRequiredMixin, HtmxMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["markers"] = Location.objects.none()
+        context["map_status"] = {"map_on_click": True}
         return context
 
     def get_success_url(self):
@@ -72,6 +73,11 @@ class LocationUpdateView(LoginRequiredMixin, HtmxMixin, UpdateView):
     model = Location
     template_name = "locations/htmx/location_update.html"
     form_class = LocationCreateForm
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["map_status"] = {"map_on_click": True}
+        return context
 
     def get_initial(self):
         # if geom has been changed somewhere else

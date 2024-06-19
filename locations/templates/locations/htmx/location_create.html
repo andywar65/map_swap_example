@@ -21,3 +21,4 @@
   </form>
 </div>
 <script id="marker_data" type="application/json">{{ markers|geojsonfeature:"popupContent"|safe }}</script>
+{{ map_status|json_script:"map_status" }}
