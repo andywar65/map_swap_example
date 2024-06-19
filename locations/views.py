@@ -45,6 +45,12 @@ class LocationCreateView(LoginRequiredMixin, HtmxMixin, CreateView):
         context["map_status"] = {"map_on_click": True}
         return context
 
+    def get_initial(self):
+        initial = super().get_initial()
+        initial["lat"] = 0
+        initial["long"] = 0
+        return initial
+
     def form_valid(self, form):
         form.instance.geom = {
             "type": "Point",
