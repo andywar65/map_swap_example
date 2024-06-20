@@ -1,4 +1,3 @@
-from django.core.exceptions import ValidationError
 from django.forms import ModelForm
 
 from .models import Location
@@ -12,9 +11,9 @@ class LocationCreateForm(ModelForm):
     def clean(self):
         cleaned_data = super().clean()
         if "lat" not in cleaned_data:
-            raise ValidationError("Invalid Latitude entry", code="invalid_lat")
+            cleaned_data["lat"] = 0
         if "long" not in cleaned_data:
-            raise ValidationError("Invalid Longitude entry", code="invalid_long")
+            cleaned_data["long"] = 0
         lat = cleaned_data["lat"]
         long = cleaned_data["long"]
         if lat > 90 or lat < -90:
