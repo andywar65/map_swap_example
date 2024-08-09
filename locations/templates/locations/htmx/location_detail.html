@@ -4,8 +4,7 @@
 <div class="card-header">
   <h4 class="card-title">{% trans "Location"%}: {{ object.title }}</h4>
 </div>
-<div class="card-body"
-     id="hypermedia-body">
+<div class="card-body">
   <p class="card-text">{{ object.description }}</p>
   <ul>
     {% if user.is_authenticated %}
