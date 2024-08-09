@@ -5,14 +5,14 @@
   <h4 class="card-title">{% trans "Location"%}: {{ object.title }}</h4>
 </div>
 <div class="card-body"
-     id="dialog-box-body">
+     id="hypermedia-body">
   <p class="card-text">{{ object.description }}</p>
   <ul>
     {% if user.is_authenticated %}
       <li>
         <a class="link link-primary"
            hx-get="{% url 'locations:location_update' pk=object.id %}"
-           hx-target="#dialog-box"
+           hx-target="#hypermedia"
            hx-push-url="true">
           {% trans "Update location" %}
         </a>
@@ -20,7 +20,7 @@
       <li>
         <a class="link link-danger"
            hx-get="{% url 'locations:location_delete' pk=object.id %}"
-           hx-target="#dialog-box"
+           hx-target="#hypermedia"
            hx-confirm="{% trans 'Are you sure you want to delete this location?' %}">
           {% trans "Delete location" %}
         </a>
@@ -29,7 +29,7 @@
     <li>
       <a class="link link-primary"
          hx-get="{% url 'locations:base_list' %}"
-         hx-target="#dialog-box"
+         hx-target="#hypermedia"
          hx-push-url="true">
         {% trans "Back to list" %}
       </a>

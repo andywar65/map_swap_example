@@ -18,7 +18,7 @@
   {% if user.is_authenticated %}
     <a class="btn btn-success"
        hx-get="{% url 'locations:location_create' %}"
-       hx-target="#dialog-box"
+       hx-target="#hypermedia"
        hx-push-url="true">
       {% trans "Add location" %}
     </a>

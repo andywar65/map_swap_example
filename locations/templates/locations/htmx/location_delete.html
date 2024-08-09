@@ -2,7 +2,7 @@
 
 <div class="alert alert-danger"
      hx-get="{% url 'locations:base_list' %}"
-     hx-target="#dialog-box"
+     hx-target="#hypermedia"
      hx-trigger="load delay:300ms"
      hx-push-url="true">
   {% trans "Deleting..." %}<span class="spinner-border spinner-border-sm"></span>

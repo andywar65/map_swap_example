@@ -37,7 +37,7 @@ addEventListener("refreshData", function(evt){
 })
 
 function openLocation(path) {
-  htmx.ajax('GET', path, '#dialog-box')
+  htmx.ajax('GET', path, '#hypermedia')
 }
 
 function onMapClick(e) {

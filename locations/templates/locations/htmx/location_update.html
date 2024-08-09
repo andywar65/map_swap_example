@@ -6,7 +6,7 @@
   <h4 class="card-title">{% trans "Update location"%}: {{ object.title }}</h4>
 </div>
 <div class="card-body"
-     id="dialog-box-body">
+     id="hypermedia-body">
   <p class="card-text">
     {% trans "Click on the map to enter coordinates, or enter them manually." %}
   </p>
@@ -15,7 +15,7 @@
     <button class="btn btn-primary"
             type="submit"
             hx-post="{% url 'locations:location_update' pk=object.id %}"
-            hx-target="#dialog-box">
+            hx-target="#hypermedia">
       {% trans "Update location" %}
     </button>
   </form>
