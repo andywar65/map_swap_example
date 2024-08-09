@@ -8,7 +8,7 @@ asgiref==3.8.1
     # via
     #   django
     #   django-htmx
-coverage==7.5.3
+coverage==7.6.1
     # via -r requirements.in
 crispy-bootstrap5==2024.2
     # via -r requirements.in
@@ -16,7 +16,7 @@ dj-database-url==2.2.0
     # via environs
 dj-email-url==1.0.6
     # via environs
-django==5.0.6
+django==5.1
     # via
     #   -r requirements.in
     #   crispy-bootstrap5
@@ -26,25 +26,25 @@ django==5.0.6
     #   django-htmx
 django-cache-url==3.4.5
     # via environs
-django-crispy-forms==2.1
+django-crispy-forms==2.3
     # via
     #   -r requirements.in
     #   crispy-bootstrap5
 django-geojson @ git+https://github.com/andywar65/django-geojson@oserror
     # via -r requirements.in
-django-htmx==1.17.3
+django-htmx==1.19.0
     # via -r requirements.in
 environs[django]==11.0.0
     # via -r requirements.in
-faker==25.3.0
+faker==26.3.0
     # via -r requirements.in
-marshmallow==3.21.2
+marshmallow==3.21.3
     # via environs
-packaging==24.0
+packaging==24.1
     # via marshmallow
-psycopg[binary,pool]==3.1.19
+psycopg[binary,pool]==3.2.1
     # via -r requirements.in
-psycopg-binary==3.1.19
+psycopg-binary==3.2.1
     # via psycopg
 psycopg-pool==3.2.2
     # via psycopg
@@ -54,9 +54,9 @@ python-dotenv==1.0.1
     # via environs
 six==1.16.0
     # via python-dateutil
-sqlparse==0.5.0
+sqlparse==0.5.1
     # via django
-typing-extensions==4.12.1
+typing-extensions==4.12.2
     # via
     #   dj-database-url
     #   psycopg
