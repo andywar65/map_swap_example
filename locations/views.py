@@ -24,7 +24,7 @@ class HtmxMixin:
 class BaseListView(HtmxMixin, ListView):
     model = Location
     context_object_name = "markers"
-    template_name = "locations/htmx/base_list.html"
+    template_name = "locations/htmx/location_list.html"
 
     def dispatch(self, request, *args, **kwargs):
         response = super().dispatch(request, *args, **kwargs)
