@@ -45,19 +45,11 @@ class LocationCreateView(LoginRequiredMixin, HtmxMixin, CreateView):
         context["map_status"] = {"map_on_click": True}
         return context
 
-    def get_initial(self):
-        initial = super().get_initial()
-        initial["lat"] = 0
-        initial["long"] = 0
-        return initial
-
     def form_valid(self, form):
         form.instance.geom = {
             "type": "Point",
             "coordinates": [form.cleaned_data["long"], form.cleaned_data["lat"]],
         }
-        form.instance.lat = None
-        form.instance.long = None
         return super().form_valid(form)
 
     def get_success_url(self):
@@ -94,19 +86,11 @@ class LocationUpdateView(LoginRequiredMixin, HtmxMixin, UpdateView):
         context["map_status"] = {"map_on_click": True}
         return context
 
-    def get_initial(self):
-        initial = super().get_initial()
-        initial["lat"] = self.object.geom["coordinates"][1]
-        initial["long"] = self.object.geom["coordinates"][0]
-        return initial
-
     def form_valid(self, form):
         form.instance.geom = {
             "type": "Point",
             "coordinates": [form.cleaned_data["long"], form.cleaned_data["lat"]],
         }
-        form.instance.lat = None
-        form.instance.long = None
         return super().form_valid(form)
 
     def get_success_url(self):
