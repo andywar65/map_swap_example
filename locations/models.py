@@ -8,8 +8,6 @@ class Location(models.Model):
     title = models.CharField(max_length=50)
     description = models.TextField(max_length=500)
     geom = PointField(null=True)
-    lat = models.FloatField("Latitude", null=True)
-    long = models.FloatField("Longitude", null=True)
 
     class Meta:
         verbose_name = "Location"
