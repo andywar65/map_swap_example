@@ -21,7 +21,7 @@ class HtmxMixin:
         return [self.template_name]
 
 
-class BaseListView(HtmxMixin, ListView):
+class LocationListView(HtmxMixin, ListView):
     model = Location
     context_object_name = "markers"
     template_name = "locations/htmx/location_list.html"

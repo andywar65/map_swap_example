@@ -1,7 +1,7 @@
 # map_swap_example
 [Django](https://djangoproject.com), [Leaflet.js](https://leafletjs.com/) and [HTMX](https://htmx.org) work together to seamlessly upload georeferenced data.
 ## Requirements
-This project is tested on Django 5.0.8 and Python 3.12.0. It does NOT rely on `GeoDjango` framework, but on [django-geojson](https://django-geojson.readthedocs.io/en/latest/) for storing geodata and [django-htmx](https://django-htmx.readthedocs.io/en/latest/) to manage interactions. I use [Bootstrap 5](https://getbootstrap.com/) for styling. A `SQLite` database is enough.
+This project is tested on Django 5.1 and Python 3.12.0. It does NOT rely on `GeoDjango` framework, but on [django-geojson](https://django-geojson.readthedocs.io/en/latest/) for storing geodata and [django-htmx](https://django-htmx.readthedocs.io/en/latest/) to manage interactions. I use [Bootstrap 5](https://getbootstrap.com/) for styling. A `SQLite` database is enough.
 ## Installation
 Prepare a virtual environment, clone this repository (`git clone https://github.com/andywar65/map_swap_example`) then install packages (`python -m pip install -r requirements.txt`). Prepare a `.env` file with at least `SECRET_KEY` environment variable, add `DATABASE_URL` if you are forced to use a specific database. Migrate database tables (`python manage.py migrate`), run `python manage.py generate_locations` to seed database and then run the server (`python manage.py runserver`). In some cases a `OSError` exception is raised, so my personal fork of [django-geojson](https://github.com/andywar65/django-geojson/tree/oserror) is installed to fix this problem.
 ## Usage
