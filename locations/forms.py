@@ -1,26 +1,19 @@
-from django.forms import ModelForm, NumberInput
+from django.forms import FloatField, ModelForm, NumberInput
 
 from .models import Location
 
 
 class LocationCreateForm(ModelForm):
+    lat = FloatField(
+        label="Latitude", widget=NumberInput(attrs={"max": 90, "min": -90})
+    )
+    long = FloatField(
+        label="Longitude", widget=NumberInput(attrs={"max": 180, "min": -180})
+    )
+
     class Meta:
         model = Location
-        fields = ("title", "description", "lat", "long")
-        widgets = {
-            "lat": NumberInput(
-                attrs={
-                    "max": 90,
-                    "min": -90,
-                }
-            ),
-            "long": NumberInput(
-                attrs={
-                    "max": 180,
-                    "min": -180,
-                }
-            ),
-        }
+        fields = ("title", "description")
 
     def clean(self):
         cleaned_data = super().clean()
