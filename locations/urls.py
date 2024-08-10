@@ -10,7 +10,7 @@ from .views import (
 
 app_name = "locations"
 urlpatterns = [
-    path("all/", LocationListView.as_view(), name="base_list"),
+    path("", LocationListView.as_view(), name="location_list"),
     path("add/", LocationCreateView.as_view(), name="location_create"),
     path("<pk>/", LocationDetailView.as_view(), name="location_detail"),
     path("<pk>/update/", LocationUpdateView.as_view(), name="location_update"),

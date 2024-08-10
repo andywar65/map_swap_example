@@ -1,7 +1,7 @@
 {% load i18n %}
 
 <div class="alert alert-danger"
-     hx-get="{% url 'locations:base_list' %}"
+     hx-get="{% url 'locations:location_list' %}"
      hx-target="#hypermedia"
      hx-trigger="load delay:300ms"
      hx-push-url="true">

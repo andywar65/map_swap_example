@@ -30,7 +30,7 @@ class LocationViewTest(TestCase):
 
     def test_view_status_no_login(self):
         print("\n-Test status without logging")
-        response = self.client.get(reverse("locations:base_list"))
+        response = self.client.get(reverse("locations:location_list"))
         self.assertEqual(response.status_code, 200)
         print("\n--Test base list status 200")
         response = self.client.get(
@@ -72,7 +72,7 @@ class LocationViewTest(TestCase):
     def test_view_status_htmx(self):
         print("\n-Test status with HTMX header")
         response = self.client.get(
-            reverse("locations:base_list"), headers={"HX-Request": "true"}
+            reverse("locations:location_list"), headers={"HX-Request": "true"}
         )
         self.assertEqual(response.status_code, 200)
         print("\n--Test with htmx base list status 200")
