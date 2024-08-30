@@ -36,18 +36,12 @@ django-htmx==1.19.0
     # via -r requirements.in
 environs[django]==11.0.0
     # via -r requirements.in
-faker==26.3.0
+faker==28.1.0
     # via -r requirements.in
-marshmallow==3.21.3
+marshmallow==3.22.0
     # via environs
 packaging==24.1
     # via marshmallow
-psycopg[binary,pool]==3.2.1
-    # via -r requirements.in
-psycopg-binary==3.2.1
-    # via psycopg
-psycopg-pool==3.2.2
-    # via psycopg
 python-dateutil==2.9.0.post0
     # via faker
 python-dotenv==1.0.1
@@ -57,11 +51,6 @@ six==1.16.0
 sqlparse==0.5.1
     # via django
 typing-extensions==4.12.2
-    # via
-    #   dj-database-url
-    #   psycopg
-    #   psycopg-pool
+    # via dj-database-url
 tzdata==2024.1
-    # via
-    #   django
-    #   psycopg
+    # via django
