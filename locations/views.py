@@ -13,12 +13,15 @@ from .models import Location
 
 
 class HtmxMixin:
-    """Switches template depending on request.htmx"""
+    """Switches template depending on htmx request header"""
 
     def get_template_names(self) -> list[str]:
-        if not self.request.htmx:
-            return [self.template_name.replace("htmx/", "")]
-        return [self.template_name]
+        if (
+            "Hx-Request" in self.request.headers
+            and self.request.headers["Hx-Request"] == "true"
+        ):
+            return [self.template_name]
+        return [self.template_name.replace("htmx/", "")]
 
 
 class LocationListView(HtmxMixin, ListView):
@@ -28,7 +31,10 @@ class LocationListView(HtmxMixin, ListView):
 
     def dispatch(self, request, *args, **kwargs):
         response = super().dispatch(request, *args, **kwargs)
-        if request.htmx:
+        if (
+            "Hx-Request" in self.request.headers
+            and self.request.headers["Hx-Request"] == "true"
+        ):
             dict = {"refreshData": True}
             response["HX-Trigger-After-Swap"] = json.dumps(dict)
         return response
@@ -63,7 +69,10 @@ class LocationCreateView(LoginRequiredMixin, HtmxMixin, CreateView):
 
     def dispatch(self, request, *args, **kwargs):
         response = super().dispatch(request, *args, **kwargs)
-        if request.htmx:
+        if (
+            "Hx-Request" in self.request.headers
+            and self.request.headers["Hx-Request"] == "true"
+        ):
             dict = {"refreshData": True}
             response["HX-Trigger-After-Swap"] = json.dumps(dict)
         return response
@@ -75,7 +84,10 @@ class LocationDetailView(HtmxMixin, DetailView):
 
     def dispatch(self, request, *args, **kwargs):
         response = super().dispatch(request, *args, **kwargs)
-        if request.htmx:
+        if (
+            "Hx-Request" in self.request.headers
+            and self.request.headers["Hx-Request"] == "true"
+        ):
             dict = {"refreshData": True}
             response["HX-Trigger-After-Swap"] = json.dumps(dict)
             response["HX-Push-Url"] = self.object.get_absolute_url()
@@ -110,7 +122,10 @@ class LocationUpdateView(LoginRequiredMixin, HtmxMixin, UpdateView):
 
     def dispatch(self, request, *args, **kwargs):
         response = super().dispatch(request, *args, **kwargs)
-        if request.htmx:
+        if (
+            "Hx-Request" in self.request.headers
+            and self.request.headers["Hx-Request"] == "true"
+        ):
             dict = {"refreshData": True}
             response["HX-Trigger-After-Swap"] = json.dumps(dict)
         return response
@@ -118,7 +133,9 @@ class LocationUpdateView(LoginRequiredMixin, HtmxMixin, UpdateView):
 
 @login_required
 def location_delete_view(request, pk):
-    if not request.htmx:
+    if "Hx-Request" not in request.headers:
+        raise Http404("Request without HTMX headers")
+    elif not request.headers["Hx-Request"] == "true":
         raise Http404("Request without HTMX headers")
     location = get_object_or_404(Location, id=pk)
     location.delete()
